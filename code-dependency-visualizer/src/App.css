@@ -1,0 +1,151 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0f0f23;
+  color: #ffffff;
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background-color: #1a1a2e;
+  color: #e94560;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #16213e;
+  padding: 1rem;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.visualization-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.node-details {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(26, 26, 46, 0.9);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  max-width: 300px;
+  max-height: 80%;
+  overflow-y: auto;
+  color: #ffffff;
+}
+
+.node-details h3 {
+  margin-top: 0;
+  color: #e94560;
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: #e94560;
+  font-size: 1.5rem;
+  cursor: pointer;
+  float: right;
+}
+
+.close-button:hover {
+  color: #ff6b6b;
+}
+
+.info-icon {
+  margin-left: 5px;
+  cursor: help;
+}
+
+
+.project-details {
+  color: #ffffff;
+}
+
+.module-item {
+  margin-bottom: 1rem;
+}
+
+.module-name {
+  cursor: pointer;
+  color: #e94560;
+}
+
+.module-path {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.class-list {
+  list-style-type: none;
+  padding-left: 1rem;
+}
+
+.class-item {
+  margin-bottom: 0.5rem;
+}
+
+/* ... existing styles ... */
+
+.project-details {
+  color: #ffffff;
+}
+
+.module-item {
+  margin-bottom: 1rem;
+}
+
+.module-name {
+  cursor: pointer;
+  color: #4CAF50;
+}
+
+.package-item {
+  margin-left: 1rem;
+}
+
+.package-name {
+  cursor: pointer;
+  color: #2196F3;
+}
+
+.module-path {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.class-list {
+  list-style-type: none;
+  padding-left: 1rem;
+}
+
+.class-item {
+  margin-bottom: 0.5rem;
+  color: #9C27B0;
+}
+
+.info-icon {
+  margin-left: 5px;
+  cursor: help;
+}
