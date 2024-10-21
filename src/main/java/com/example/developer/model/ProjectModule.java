@@ -1,55 +1,49 @@
 package com.example.developer.model;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "project_module")
 public class ProjectModule {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String name;
     private String path;
-
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    @JsonBackReference
-    private Project project;
-
-    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private Set<ClassEntity> classes = new HashSet<>();
+    private List<Dependency> dependencies;
+    private Project project;
+    private String errorMessage;
+    private ProjectStatus status;
 
+    public ProjectStatus getStatus() {
+        return status;
+    }
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<PackageEntity> packages;
+    public void setStatus(ProjectStatus status) {
+        this.status = status;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     // Getters and Setters
-    // ...
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Dependency> getDependencies() {
+        return dependencies;
+    }
+
+    public void setDependencies(List<Dependency> dependencies) {
+        this.dependencies = dependencies;
     }
 
     public String getPath() {
@@ -60,14 +54,6 @@ public class ProjectModule {
         this.path = path;
     }
 
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
     public Set<ClassEntity> getClasses() {
         return classes;
     }
@@ -76,24 +62,11 @@ public class ProjectModule {
         this.classes = classes;
     }
 
-    public List<PackageEntity> getPackages() {
-        return packages;
+    public Project getProject() {
+        return project;
     }
 
-    public void setPackages(List<PackageEntity> packages) {
-        this.packages = packages;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProjectModule that = (ProjectModule) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(path, that.path) && Objects.equals(project, that.project) && Objects.equals(classes, that.classes) && Objects.equals(packages, that.packages);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, path, project, classes, packages);
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

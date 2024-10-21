@@ -1,44 +1,34 @@
 package com.example.developer.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-
 import java.util.*;
 
-@Table(name = "project")
-@Entity
 public class Project {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private String id;
     private String name;
     private String path;
-
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<ProjectModule> modules = new ArrayList<>();
-
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<Dependency> dependencies = new ArrayList<>();
-
-    @Enumerated(EnumType.STRING)
     private ProjectStatus status;
-
     private String errorMessage;
+    private List<ExternalDependency> externalDependencies = new ArrayList<>();
 
 
-    // Getters and Setters
-    // ...
+    // Getters and setters
 
+    public List<ExternalDependency> getExternalDependencies() {
+        return externalDependencies;
+    }
 
-    public Long getId() {
+    public void setExternalDependencies(List<ExternalDependency> externalDependencies) {
+        this.externalDependencies = externalDependencies;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -62,51 +52,17 @@ public class Project {
         return modules;
     }
 
-    // Optionally, you can create a method to return a simplified view of the project
-    public List<Map<String, Object>> getModulesAsMap() {
-        List<Map<String, Object>> moduleList = new ArrayList<>();
-        for (ProjectModule module : modules) {
-            Map<String, Object> moduleMap = new HashMap<>();
-            moduleMap.put("name", module.getName());
-            moduleMap.put("path", module.getPath());
-            moduleMap.put("project", this); // Reference to the project
-            moduleMap.put("classes", module.getClasses()); // Directly include classes
-            moduleList.add(moduleMap);
-        }
-        return moduleList;
+    public void setModules(List<ProjectModule> modules) {
+        this.modules = modules;
     }
 
-    // ... existing code ...
-public List<Map<String, Object>> getModulesAndClassesAsMap() {
-    List<Map<String, Object>> moduleList = new ArrayList<>();
-    for (ProjectModule module : modules) {
-        Map<String, Object> moduleMap = new HashMap<>();
-        moduleMap.put("name", module.getName());
-        moduleMap.put("path", module.getPath());
-        
-        // Add packages and classes to the module map
-        Map<String, Object> packageMap = new HashMap<>();
-        for (ClassEntity classEntity : module.getClasses()) {
-            String packageName = classEntity.getPackageName();
-            String[] packageParts = packageName.split("\\."); // Split package name into parts
-            
-            // Build nested structure for packages
-            Map<String, Object> currentLevel = packageMap;
-            for (String part : packageParts) {
-                currentLevel = (Map<String, Object>) currentLevel.computeIfAbsent(part, k -> new HashMap<>());
-            }
-            // Add class to the final package level
-            List<String> classes = (List<String>) currentLevel.computeIfAbsent("classes", k -> new ArrayList<>());
-            classes.add(classEntity.getName());
-        }
-        
-        moduleMap.put("packages", packageMap);
-        moduleList.add(moduleMap);
+    public List<Dependency> getDependencies() {
+        return dependencies;
     }
-    return moduleList;
-}
-// ... existing code ...
 
+    public void setDependencies(List<Dependency> dependencies) {
+        this.dependencies = dependencies;
+    }
 
     public ProjectStatus getStatus() {
         return status;
@@ -124,17 +80,6 @@ public List<Map<String, Object>> getModulesAndClassesAsMap() {
         this.errorMessage = errorMessage;
     }
 
-    public void setModules(List<ProjectModule> modules) {
-        this.modules = modules;
-    }
-
-    public List<Dependency> getDependencies() {
-        return dependencies;
-    }
-
-    public void setDependencies(List<Dependency> dependencies) {
-        this.dependencies = dependencies;
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

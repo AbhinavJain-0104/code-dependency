@@ -28,4 +28,16 @@ public class StorageConfig {
     public Path getStoragePath() {
         return storagePath;
     }
+
+    public String getProjectStoragePath() {
+        return projectStoragePath;
+    }
+
+    public void setProjectStoragePath(String projectStoragePath) {
+        this.projectStoragePath = projectStoragePath;
+    }
+
+    public void setStoragePath(Path storagePath) {
+        this.storagePath = storagePath;
+    }
 }

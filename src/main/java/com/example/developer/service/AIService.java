@@ -17,7 +17,6 @@ public class AIService {
         if (!classEntity.getInnerClasses().isEmpty()) {
             description.append(", ").append(classEntity.getInnerClasses().size())
                     .append(" inner classes (")
-                    .append(String.join(", ", classEntity.getInnerClasses()))
                     .append(")");
         }
 

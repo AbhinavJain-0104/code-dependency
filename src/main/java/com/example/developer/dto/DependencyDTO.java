@@ -6,6 +6,15 @@ public class DependencyDTO {
     private String source;
     private String target;
     private String type;
+    private boolean isCircular;
+
+    public boolean isCircular() {
+        return isCircular;
+    }
+
+    public void setCircular(boolean circular) {
+        isCircular = circular;
+    }
 
     public String getSource() {
         return source;
@@ -36,11 +45,14 @@ public class DependencyDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DependencyDTO that = (DependencyDTO) o;
-        return Objects.equals(source, that.source) && Objects.equals(target, that.target) && Objects.equals(type, that.type);
+        return isCircular == that.isCircular &&
+                Objects.equals(source, that.source) &&
+                Objects.equals(target, that.target) &&
+                Objects.equals(type, that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(source, target, type);
+        return Objects.hash(source, target, type, isCircular);
     }
 }

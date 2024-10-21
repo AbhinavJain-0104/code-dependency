@@ -96,6 +96,23 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version> <!-- Use the latest stable version -->
 		</dependency>
+		<dependency>
+			<groupId>com.github.javaparser</groupId>
+			<artifactId>javaparser-core</artifactId>
+			<version>3.25.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javaparser</groupId>
+			<artifactId>javaparser-symbol-solver-core</artifactId>
+			<version>3.25.4</version> <!-- Check for the latest version -->
+		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.15</version>  <!-- You can use the latest version -->
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.apache.maven</groupId>

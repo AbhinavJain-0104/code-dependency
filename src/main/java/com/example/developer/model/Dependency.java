@@ -22,7 +22,25 @@ public class Dependency {
     @JoinColumn(name = "project_id")
     @JsonBackReference
     private Project project;
+    private boolean isCircular;
 
+    public Dependency() {
+
+    }
+
+    public Dependency(String fullyQualifiedName, String fullyQualifiedName1, String anImport) {
+        this.source = fullyQualifiedName;
+        this.target = fullyQualifiedName1;
+        this.type = anImport;
+    }
+
+    public boolean isCircular() {
+        return isCircular;
+    }
+
+    public void setCircular(boolean circular) {
+        isCircular = circular;
+    }
 
     // Getters and Setters
 
@@ -74,10 +92,11 @@ public class Dependency {
         this.project = project;
     }
 
-    public Dependency(String source, String target, String dependencyType) {
+    public Dependency(String source, String target, String dependencyType, boolean isCircular) {
         this.source = source;
         this.target = target;
         this.dependencyType = dependencyType;
+        this.isCircular = isCircular;
     }
 
 

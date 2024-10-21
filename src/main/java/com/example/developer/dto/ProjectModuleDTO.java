@@ -63,11 +63,15 @@ public class ProjectModuleDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProjectModuleDTO that = (ProjectModuleDTO) o;
-        return Objects.equals(name, that.name) && Objects.equals(path, that.path) && Objects.equals(packages, that.packages);
+        return Objects.equals(name, that.name) &&
+                Objects.equals(path, that.path) &&
+                Objects.equals(packages, that.packages) &&
+                status == that.status &&
+                Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, path, packages);
+        return Objects.hash(name, path, packages, status, id);
     }
 }

@@ -32,4 +32,17 @@ public class FileUtils {
             });
         }
     }
+
+
+    public static String readFileContent(String filePath) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(filePath)));
+    }
+
+    public static String getFileExtension(String filePath) {
+        int lastDotIndex = filePath.lastIndexOf('.');
+        if (lastDotIndex > 0) {
+            return filePath.substring(lastDotIndex + 1);
+        }
+        return "";
+    }
 }
