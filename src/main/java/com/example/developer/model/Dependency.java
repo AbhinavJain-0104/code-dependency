@@ -4,12 +4,16 @@ package com.example.developer.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 
 @Entity
-public class Dependency {
+public class Dependency implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,6 +27,17 @@ public class Dependency {
     @JsonBackReference
     private Project project;
     private boolean isCircular;
+    private ClassEntity classes;
+
+
+
+    public ClassEntity getClasses() {
+        return classes;
+    }
+
+    public void setClasses(ClassEntity classes) {
+        this.classes = classes;
+    }
 
     public Dependency() {
 

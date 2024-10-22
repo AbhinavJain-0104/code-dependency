@@ -1,9 +1,11 @@
 package com.example.developer.dto;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class PackageDTO {
+public class PackageDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
     private List<ClassDTO> classes;
 

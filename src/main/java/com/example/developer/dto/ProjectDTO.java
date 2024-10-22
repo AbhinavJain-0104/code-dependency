@@ -1,10 +1,14 @@
 package com.example.developer.dto;
 
-import com.example.developer.model.ProjectStatus;
+import com.example.developer.model.*;
+
+import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
-public class ProjectDTO {
+public class ProjectDTO  implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String id;
     private ProjectStatus status;
     private String name;
@@ -13,6 +17,78 @@ public class ProjectDTO {
     private List<DependencyDTO> dependencies;
     private List<ExternalDependencyDTO> externalDependencies;
     private String errorMessage;
+    private String primaryLanguage;
+    private List<String> detectedFrameworks;
+    private List<ExternalDependency> dependency;
+    private List<APIUsagePatternDTO> apiUsagePatterns;
+    private List<DuplicationInfoDTO> duplicationInfo;
+    private Map<String, List<MetricTrendDTO>> trends;
+    private List<StyleInconsistencyDTO> styleInconsistencies;
+    private List<VersionIssueDTO> versionIssues;
+
+    public List<DuplicationInfoDTO> getDuplicationInfo() {
+        return duplicationInfo;
+    }
+
+    public void setDuplicationInfo(List<DuplicationInfoDTO> duplicationInfo) {
+        this.duplicationInfo = duplicationInfo;
+    }
+
+    public Map<String, List<MetricTrendDTO>> getTrends() {
+        return trends;
+    }
+
+    public void setTrends(Map<String, List<MetricTrendDTO>> trends) {
+        this.trends = trends;
+    }
+
+    public List<StyleInconsistencyDTO> getStyleInconsistencies() {
+        return styleInconsistencies;
+    }
+
+    public void setStyleInconsistencies(List<StyleInconsistencyDTO> styleInconsistencies) {
+        this.styleInconsistencies = styleInconsistencies;
+    }
+
+    public List<VersionIssueDTO> getVersionIssues() {
+        return versionIssues;
+    }
+
+    public void setVersionIssues(List<VersionIssueDTO> versionIssues) {
+        this.versionIssues = versionIssues;
+    }
+
+    public List<APIUsagePatternDTO> getApiUsagePatterns() {
+        return apiUsagePatterns;
+    }
+
+    public void setApiUsagePatterns(List<APIUsagePatternDTO> apiUsagePatterns) {
+        this.apiUsagePatterns = apiUsagePatterns;
+    }
+
+    public List<ExternalDependency> getDependency() {
+        return dependency;
+    }
+
+    public void setDependency(List<ExternalDependency> dependency) {
+        this.dependency = dependency;
+    }
+
+    public String getPrimaryLanguage() {
+        return primaryLanguage;
+    }
+
+    public void setPrimaryLanguage(String primaryLanguage) {
+        this.primaryLanguage = primaryLanguage;
+    }
+
+    public List<String> getDetectedFrameworks() {
+        return detectedFrameworks;
+    }
+
+    public void setDetectedFrameworks(List<String> detectedFrameworks) {
+        this.detectedFrameworks = detectedFrameworks;
+    }
 
     public ProjectDTO(String id, ProjectStatus status, String name) {
         this.id = id;

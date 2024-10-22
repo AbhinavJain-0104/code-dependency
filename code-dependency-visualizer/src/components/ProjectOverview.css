@@ -1,0 +1,24 @@
+.project-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    }
+    .overview-card, .dependencies-card, .metrics-card {
+    background-color: #27293d;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .metrics-card details {
+        margin-bottom: 10px;
+        }
+        .metrics-card summary {
+        cursor: pointer;
+        color: #61dafb;
+        }
+        .metrics-card pre {
+        background-color: #1e1e2f;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+        }

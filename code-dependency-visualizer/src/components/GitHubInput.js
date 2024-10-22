@@ -1,40 +1,40 @@
 import React, { useState } from 'react';
+import './GitHubInput.css';
 
-const GitHubInput = ({ onAnalyze }) => {
-    const [gitRepoUrl, setGitRepoUrl] = useState('');
-    const [error, setError] = useState('');
-    const [isSubmitting, setIsSubmitting] = useState(false);
+const GitHubInput = ({ onSubmit }) => {
+  const [url, setUrl] = useState('');
+  const [error, setError] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    if (!url) {
+      setError('Please enter a GitHub URL');
+      return;
+    }
 
-        if (isSubmitting) return;
+    try {
+      await onSubmit(url);
+    } catch (err) {
+      setError(`Error: ${err.message}`);
+    }
+  };
 
-        setIsSubmitting(true);
-
-        try {
-            await onAnalyze(gitRepoUrl);
-        } catch (err) {
-            setError('Error analyzing the repository. Please try again.');
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                placeholder="GitHub Repository URL"
-                value={gitRepoUrl}
-                onChange={(e) => setGitRepoUrl(e.target.value)}
-                required
-            />
-            <button type="submit" disabled={isSubmitting}>Analyze</button>
-            {error && <p>{error}</p>}
-        </form>
-    );
+  return (
+    <div className="github-input">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          placeholder="Enter GitHub URL"
+          className="github-url-input"
+        />
+        <button type="submit" className="analyze-button">Analyze</button>
+      </form>
+      {error && <div className="error-message">{error}</div>}
+    </div>
+  );
 };
 
 export default GitHubInput;

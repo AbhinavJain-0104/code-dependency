@@ -2,13 +2,13 @@ package com.example.developer.dto;
 
 import com.example.developer.model.ClassEntity;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.*;
 
-public class ClassDTO {
+public class ClassDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
+    private String filePath;
     private String packageName;
     private List<ClassEntity> innerClasses;
     private String aiDescription;
@@ -17,6 +17,107 @@ public class ClassDTO {
     private String superclass;
     private Set<String> modifiers;
     private Set<String> usedClasses = new HashSet<>();
+    private Set<ClassEntity>innerFunctions= new HashSet<>();
+    private String language;
+    private Set<String> methods = new HashSet<>();
+    private Set<String> properties = new HashSet<>();
+    private boolean isApiRoute;
+    private boolean hasGetServerSideProps;
+    private boolean hasGetStaticProps;
+    private String framework;
+    private Map<String, Double> metrics;
+    private List<PerformanceInsightDTO> performanceInsights;
+
+    public List<PerformanceInsightDTO> getPerformanceInsights() {
+        return performanceInsights;
+    }
+
+    public void setPerformanceInsights(List<PerformanceInsightDTO> performanceInsights) {
+        this.performanceInsights = performanceInsights;
+    }
+
+
+    // ... existing methods ...
+
+    public Map<String, Double> getMetrics() {
+        return metrics;
+    }
+
+    public void setMetrics(Map<String, Double> metrics) {
+        this.metrics = metrics;
+    }
+
+    public String getFramework() {
+        return framework;
+    }
+
+    public void setFramework(String framework) {
+        this.framework = framework;
+    }
+
+    public Set<String> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Set<String> properties) {
+        this.properties = properties;
+    }
+
+    public boolean isApiRoute() {
+        return isApiRoute;
+    }
+
+    public void setApiRoute(boolean apiRoute) {
+        isApiRoute = apiRoute;
+    }
+
+    public boolean isHasGetServerSideProps() {
+        return hasGetServerSideProps;
+    }
+
+    public void setHasGetServerSideProps(boolean hasGetServerSideProps) {
+        this.hasGetServerSideProps = hasGetServerSideProps;
+    }
+
+    public boolean isHasGetStaticProps() {
+        return hasGetStaticProps;
+    }
+
+    public void setHasGetStaticProps(boolean hasGetStaticProps) {
+        this.hasGetStaticProps = hasGetStaticProps;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public Set<String> getMethods() {
+        return methods;
+    }
+
+    public void setMethods(Set<String> methods) {
+        this.methods = methods;
+    }
+
+    public Set<ClassEntity> getInnerFunctions() {
+        return innerFunctions;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public void setInnerFunctions(Set<ClassEntity> innerFunctions) {
+        this.innerFunctions = innerFunctions;
+    }
 
     public Set<String> getUsedClasses() {
         return usedClasses;

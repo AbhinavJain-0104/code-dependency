@@ -17,7 +17,10 @@ public class JavaScriptDependencyResolver implements DependencyResolver {
         for (String importStatement : classEntity.getImports()) {
             for (ClassEntity targetClass : allClasses) {
                 if (targetClass.getFilePath().endsWith(importStatement + ".js") ||
-                        targetClass.getFilePath().endsWith(importStatement + ".jsx")) {
+                        targetClass.getFilePath().endsWith(importStatement + ".jsx") ||
+                        targetClass.getFilePath().endsWith(importStatement + ".ts") ||
+                        targetClass.getFilePath().endsWith(importStatement + ".tsx") ||
+                        targetClass.getFilePath().endsWith(importStatement + ".vue")) {
                     dependencies.add(new Dependency(classEntity.getFullyQualifiedName(), targetClass.getFullyQualifiedName(), "import"));
                 }
             }

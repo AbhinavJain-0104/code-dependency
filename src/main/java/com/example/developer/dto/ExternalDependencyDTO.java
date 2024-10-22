@@ -1,6 +1,9 @@
 package com.example.developer.dto;
 
-public class ExternalDependencyDTO {
+import java.io.Serializable;
+
+public class ExternalDependencyDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
     private String version;
     private String packageManager;

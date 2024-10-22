@@ -1,17 +1,16 @@
 package com.example.developer.model;
 
+import com.example.developer.dto.PerformanceInsight;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.*;
 
 @Table(name = "class_entity")
 @Entity
-public class ClassEntity {
+public class ClassEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,6 +50,60 @@ public class ClassEntity {
     private String superclass;
     private Set<String> modifiers = new HashSet<>();
     private Set<String> usedClasses = new HashSet<>();
+    private Set<ClassEntity>innerFunctions= new HashSet<>();
+    private ClassEntity classes;
+    private Map<String, Double> metrics;
+    private List<PerformanceInsight> performanceInsights;
+    @Lob
+    private String content;
+
+    // ... existing methods ...
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+
+    public List<PerformanceInsight> getPerformanceInsights() {
+        return performanceInsights;
+    }
+
+    public void setPerformanceInsights(List<PerformanceInsight> performanceInsights) {
+        this.performanceInsights = performanceInsights != null ? performanceInsights : new ArrayList<>();
+    }
+
+    public void addPerformanceInsight(PerformanceInsight insight) {
+        if (insight != null) {
+            this.performanceInsights.add(insight);
+        }
+    }
+    public Map<String, Double> getMetrics() {
+        return metrics;
+    }
+
+    public void setMetrics(Map<String, Double> metrics) {
+        this.metrics = metrics;
+    }
+
+    public ClassEntity getClasses() {
+        return classes;
+    }
+
+    public void setClasses(ClassEntity classes) {
+        this.classes = classes;
+    }
+
+    public Set<ClassEntity> getInnerFunctions() {
+        return innerFunctions;
+    }
+
+    public void setInnerFunctions(Set<ClassEntity> innerFunctions) {
+        this.innerFunctions = innerFunctions;
+    }
 
     public Set<String> getUsedClasses() {
         return usedClasses;

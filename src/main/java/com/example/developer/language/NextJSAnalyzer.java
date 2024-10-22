@@ -13,20 +13,15 @@ public class NextJSAnalyzer extends ReactAnalyzer {
     private static final Pattern GET_SERVER_SIDE_PROPS_PATTERN = Pattern.compile("export\\s+async\\s+function\\s+getServerSideProps\\s*\\(");
     private static final Pattern GET_STATIC_PROPS_PATTERN = Pattern.compile("export\\s+async\\s+function\\s+getStaticProps\\s*\\(");
 
-
     @Override
     public String getLanguage() {
-        return "NextJS";
-    }
-
-    @Override
-    public String getFramework() {
         return "Next.js";
     }
 
     @Override
-    public ClassEntity extractComponentInfo(String content, String filePath) {
-        ClassEntity componentEntity = super.extractComponentInfo(content, filePath);
+    public ClassEntity extractClassInfo(String content, String filePath) {
+        ClassEntity componentEntity = super.extractClassInfo(content, filePath);
+        componentEntity.setFramework("Next.js");
 
         componentEntity.setIsApiRoute(isApiRoute(content));
         componentEntity.setHasGetServerSideProps(hasGetServerSideProps(content));

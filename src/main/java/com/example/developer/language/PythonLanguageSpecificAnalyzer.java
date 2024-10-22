@@ -19,6 +19,18 @@ public class PythonLanguageSpecificAnalyzer implements LanguageSpecificAnalyzer 
     public String getLanguage() {
         return "Python";
     }
+    @Override
+    public boolean canHandle(String filePath) {
+        return filePath.toLowerCase().endsWith(".java");
+    }
+
+    @Override
+    public String detectFramework(String projectRoot) {
+        // Java doesn't typically use frameworks in the same way as JavaScript,
+        // but you could implement logic here to detect common Java frameworks if needed.
+        return null;
+    }
+
 
     @Override
     public ClassEntity extractClassInfo(String content, String filePath) {

@@ -52,11 +52,12 @@ public class ProjectAnalyzer {
                 this.languageAnalyzers.keySet(), this.packageManagerAnalyzers.keySet(), this.frameworkAnalyzers.keySet());
     }
 
+
     public Project analyzeProject(String projectPath) {
         logger.info("Starting analysis of project: {}", projectPath);
         Project project = new Project();
         project.setPath(projectPath);
-        project.setName(Paths.get(projectPath).getFileName().toString());
+
 
         try {
             List<ProjectModule> modules = analyzeProjectStructure(projectPath);
@@ -112,6 +113,25 @@ public class ProjectAnalyzer {
         logger.debug("Detected {} modules in project", modules.size());
         return modules;
     }
+
+//    private List<ProjectModule> analyzeProjectStructure(String projectPath) throws IOException {
+//        List<ProjectModule> modules = new ArrayList<>();
+//        Files.walkFileTree(Paths.get(projectPath), new SimpleFileVisitor<Path>() {
+//            @Override
+//            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+//                if (isModuleDirectory(dir)) {
+//                    ProjectModule module = new ProjectModule();
+//                    module.setName(dir.getFileName().toString());
+//                    module.setPath(dir.toString());
+//                    modules.add(module);
+//                    return FileVisitResult.SKIP_SUBTREE;
+//                }
+//                return FileVisitResult.CONTINUE;
+//            }
+//        });
+//        logger.debug("Detected {} modules in project", modules.size());
+//        return modules;
+//    }
 
     private boolean isModuleDirectory(Path dir) {
         return Files.exists(dir.resolve("pom.xml")) ||

@@ -1,0 +1,47 @@
+.github-input {
+  width: 100%;
+  max-width: 600px;
+}
+
+.github-input form {
+  display: flex;
+  gap: 10px;
+}
+
+.github-url-input {
+  flex: 1;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #2a2a3a;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.github-url-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #61dafb;
+}
+
+.analyze-button {
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  background-color: #61dafb;
+  color: #1a1a2e;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.analyze-button:hover {
+  background-color: #4fa8d5;
+}
+
+.error-message {
+  margin-top: 10px;
+  color: #ff6b6b;
+  font-size: 14px;
+}

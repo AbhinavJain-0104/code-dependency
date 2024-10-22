@@ -1,0 +1,33 @@
+.class-info {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .class-info section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .class-info h2 {
+    color: #333;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 0.5rem;
+  }
+  
+  .class-info ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .class-info li {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+  
+  .ai-description p {
+    font-style: italic;
+    color: #555;
+  }

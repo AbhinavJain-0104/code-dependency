@@ -3,10 +3,12 @@ package com.example.developer.dto;
 import com.example.developer.model.ProjectStatus;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class ProjectModuleDTO {
+public class ProjectModuleDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
     private String path;
     private List<PackageDTO> packages;
