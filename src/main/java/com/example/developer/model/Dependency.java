@@ -2,11 +2,12 @@ package com.example.developer.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
+import org.springframework.data.annotation.Id;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -33,8 +34,7 @@ import java.util.Set;
     private String target;
     private String dependencyType;
     private String type;
-    @ManyToOne
-    @JoinColumn(name = "project_id")
+
     @JsonBackReference
     private Project project;
     private boolean isCircular;

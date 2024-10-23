@@ -1,18 +1,19 @@
 package com.example.developer.model;
 
-import jakarta.persistence.*;
+import org.springframework.data.redis.core.RedisHash;
+
 import java.util.List;
 import java.util.Objects;
+import org.springframework.data.annotation.Id;
 
-@Entity
+
+@RedisHash("packageEntity")
 public class PackageEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
     private List<ClassEntity> classes;
 
     // Getters and setters
