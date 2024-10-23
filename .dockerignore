@@ -1,2 +1,7 @@
-target
-!target/*.jar
+# Remove or comment out these lines
+# target
+# !target/*.jar
+
+# Add this line to ignore everything except the target directory
+*
+!target
