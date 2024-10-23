@@ -2,31 +2,41 @@ package com.example.developer.model;
 
 import com.example.developer.dto.PerformanceInsight;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
 import java.util.*;
 
-@Table(name = "class_entity")
-@Entity
-public class ClassEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@RedisHash("class")
+    public class ClassEntity implements Serializable {
+        @Id
+        private Long id;
 
-    private String name;
-    private String packageName;
+        @Indexed
+        private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "module_id")
+        @Indexed
+        private String packageName;
+
+        @Indexed
+        private String moduleName;
+
+
+
+        private static final long serialVersionUID = 1L;
+
+
+
+
     @JsonBackReference
     private ProjectModule module;
 
 
 
-    @ElementCollection
+
     private Set<String> imports = new HashSet<>();
 
     private Set<String> methodCalls = new HashSet<>();
@@ -43,7 +53,6 @@ public class ClassEntity implements Serializable {
     private boolean isApiRoute;
     private boolean hasGetServerSideProps;
     private boolean hasGetStaticProps;
-    @ElementCollection
     private List<ClassEntity> innerClasses;
     private Set<String> fields = new HashSet<>();
     private Set<String> interfaces = new HashSet<>();
@@ -54,7 +63,7 @@ public class ClassEntity implements Serializable {
     private ClassEntity classes;
     private Map<String, Double> metrics;
     private List<PerformanceInsight> performanceInsights;
-    @Lob
+
     private String content;
 
     // ... existing methods ...

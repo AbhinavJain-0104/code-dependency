@@ -1,21 +1,22 @@
 package com.example.developer.dto;
 
 import com.example.developer.model.ProjectStatus;
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+
+@RedisHash("projectModuleDTO")
 public class ProjectModuleDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private String path;
     private List<PackageDTO> packages;
-    @Enumerated(EnumType.STRING)
     private ProjectStatus status;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public Long getId() {

@@ -1,12 +1,19 @@
 package com.example.developer.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
+
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@RedisHash("project")
 public class Project implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
     private String id;
+    @Indexed
     private String name;
     private String path;
     private List<ProjectModule> modules = new ArrayList<>();
@@ -173,3 +180,5 @@ public class Project implements Serializable {
         return Objects.hash(id, name, path);
     }
 }
+
+

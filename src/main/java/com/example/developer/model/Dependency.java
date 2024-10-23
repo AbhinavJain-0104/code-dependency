@@ -3,6 +3,8 @@ package com.example.developer.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,12 +13,21 @@ import java.util.Objects;
 import java.util.Set;
 
 
-@Entity
-public class Dependency implements Serializable {
+
+    @RedisHash("dependency")
+    public class Dependency implements Serializable{
+        @Id
+        private Long id;
+
+        @Indexed
+        private String groupId;
+
+        @Indexed
+        private String artifactId;
+
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+
 
     private String source;
     private String target;

@@ -1,21 +1,24 @@
 package com.example.developer.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
 
-@Entity
+@RedisHash("externalDependency")
 public class ExternalDependency implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Indexed
     private String name;
+
+
+
     private String version;
     private String packageManager;
     private String type;

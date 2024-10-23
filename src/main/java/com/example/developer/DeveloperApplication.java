@@ -12,3 +12,4 @@ public class DeveloperApplication {
         SpringApplication.run(DeveloperApplication.class, args);
     }
 }
+
