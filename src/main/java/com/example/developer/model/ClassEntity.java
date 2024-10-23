@@ -2,26 +2,23 @@ package com.example.developer.model;
 
 import com.example.developer.dto.PerformanceInsight;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
-import org.springframework.data.redis.core.index.Indexed;
+
 
 import java.io.Serializable;
 import java.util.*;
 
 
-@RedisHash("class")
     public class ClassEntity implements Serializable {
-        @Id
+
         private Long id;
 
-        @Indexed
+
         private String name;
 
-        @Indexed
+
         private String packageName;
 
-        @Indexed
+
         private String moduleName;
 
 

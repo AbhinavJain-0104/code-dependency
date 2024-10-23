@@ -1,15 +1,12 @@
 package com.example.developer.model;
 
-import org.springframework.data.redis.core.RedisHash;
 
 import java.util.List;
 import java.util.Objects;
-import org.springframework.data.annotation.Id;
 
 
-@RedisHash("packageEntity")
 public class PackageEntity {
-    @Id
+
     private Long id;
 
     private String name;

@@ -2,28 +2,17 @@ package com.example.developer.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.springframework.data.redis.core.RedisHash;
-import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
-import org.springframework.data.annotation.Id;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 
 
-    @RedisHash("dependency")
+
+
     public class Dependency implements Serializable{
-        @Id
+
         private Long id;
-
-        @Indexed
         private String groupId;
-
-        @Indexed
         private String artifactId;
 
     private static final long serialVersionUID = 1L;
