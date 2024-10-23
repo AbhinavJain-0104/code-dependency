@@ -28,19 +28,34 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    @PostMapping("/analyze")
+//    @PostMapping("/analyze")
+//    public ResponseEntity<ProjectDTO> analyzeGitHubProject(@RequestParam("gitRepoUrl") String gitRepoUrl) {
+//        try {
+//            Project analyzedProject = projectService.analyzeGitHubProject(gitRepoUrl);
+//            ProjectDTO projectDTO = convertToDTO(analyzedProject);
+//            return ResponseEntity.ok(projectDTO);
+//        } catch (Exception e) {
+//            logger.error("Error analyzing GitHub project", e);
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+//                    .body(new ProjectDTO(null, ProjectStatus.ANALYSIS_FAILED, e.getMessage()));
+//        }
+//    }
+
+
+    @GetMapping("/analyze")
     public ResponseEntity<ProjectDTO> analyzeGitHubProject(@RequestParam("gitRepoUrl") String gitRepoUrl) {
         try {
+            logger.info("Received request to analyze project: {}", gitRepoUrl);
             Project analyzedProject = projectService.analyzeGitHubProject(gitRepoUrl);
             ProjectDTO projectDTO = convertToDTO(analyzedProject);
+            logger.info("Analysis completed successfully for: {}", gitRepoUrl);
             return ResponseEntity.ok(projectDTO);
         } catch (Exception e) {
-            logger.error("Error analyzing GitHub project", e);
+            logger.error("Error analyzing GitHub project: {}", gitRepoUrl, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ProjectDTO(null, ProjectStatus.ANALYSIS_FAILED, e.getMessage()));
         }
     }
-
     private ProjectDTO convertToDTO(Project project) {
         if (project == null) {
             return null;
